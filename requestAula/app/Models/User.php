@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -19,7 +20,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'password_confirmed', // Campo para confirmação de senha
     ];
 
     /**
@@ -42,17 +42,6 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-            // Aqui você pode adicionar o cast para password_confirmed se quiser
         ];
-    }
-
-    /**
-     * Verifica se a senha foi confirmada.
-     *
-     * @return bool
-     */
-    public function hasConfirmedPassword(): bool
-    {
-        return $this->password_confirmed; // Verifica se o campo password_confirmed é verdadeiro
     }
 }
